@@ -34,9 +34,8 @@
         const text = await res.text();
         textArea.value = text;
 
-        const lines = text.split(/\r?\n/); // split on both Windows and Unix newlines
-        linesGlobal = push(...lines);
-
+        linesGlobal = text.split(/\r?\n/); // split on both Windows and Unix newlines
+        
       } catch (err) {
         alert("Failed to fetch file: " + err.message);
       }
