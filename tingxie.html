@@ -30,7 +30,8 @@
         const res = await fetch(url);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const text = await res.text();
-        textArea.value = text;
+        //textArea.value = text;
+        const lines = text.split(/\r?\n/); // split on both Windows and Unix newlines
       } catch (err) {
         alert("Failed to fetch file: " + err.message);
       }
@@ -42,7 +43,7 @@
       if (!text) return alert("No text loaded.");
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "zh-CN";
-      speechSynthesis.speak(utterance);
+      speechSynthesis.speak(lines);
     });
   </script>
 </body>
