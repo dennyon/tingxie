@@ -14,7 +14,7 @@
   <input id="url" placeholder="Enter file URL, e.g. https://example.com/words.txt" style="width: 100%; padding: 5px;" />
   <button id="loadBtn">Load File</button>
   <button id="speakBtn">Speak</button>
-  <textarea id="text"></textarea>
+  <textarea id="text" hidden></textarea>
 
   <script>
     const textArea = document.getElementById("text");
@@ -41,7 +41,7 @@
       const text = textArea.value.trim();
       if (!text) return alert("No text loaded.");
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "en-US";
+      utterance.lang = "zh-CN";
       speechSynthesis.speak(utterance);
     });
   </script>
