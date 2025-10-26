@@ -44,8 +44,8 @@
     // 2️⃣ Speak the text content
     speakBtn.addEventListener("click", () => {
       const text = textArea.value.trim();
-      if (!line) return alert("No text loaded.");
-      const utterance = new SpeechSynthesisUtterance(line);
+      if (!lines) return alert("No text loaded.");
+      const utterance = new SpeechSynthesisUtterance(lines);
       utterance.lang = "zh-CN";
       speechSynthesis.speak(utterance);
     });
