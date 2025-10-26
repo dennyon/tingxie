@@ -21,6 +21,8 @@
     const loadBtn = document.getElementById("loadBtn");
     const speakBtn = document.getElementById("speakBtn");
 
+    const line = null;
+
     // 1️⃣ Load file content from remote URL
     loadBtn.addEventListener("click", async () => {
       const url = document.getElementById("url").value.trim();
@@ -31,6 +33,9 @@
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const text = await res.text();
         textArea.value = text;
+
+        lines = text.split(/\r?\n/); // split on both Windows and Unix newlines
+
       } catch (err) {
         alert("Failed to fetch file: " + err.message);
       }
@@ -39,8 +44,8 @@
     // 2️⃣ Speak the text content
     speakBtn.addEventListener("click", () => {
       const text = textArea.value.trim();
-      if (!text) return alert("No text loaded.");
-      const utterance = new SpeechSynthesisUtterance(text);
+      if (!line) return alert("No text loaded.");
+      const utterance = new SpeechSynthesisUtterance(line);
       utterance.lang = "zh-CN";
       speechSynthesis.speak(utterance);
     });
